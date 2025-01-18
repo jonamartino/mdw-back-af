@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express"
+import express, { json, Request, Response } from "express"
 import router from "./routes/index";
 import connectDB from "./database";
 import dotenv from 'dotenv';
@@ -12,6 +12,8 @@ connectDB();
 
 syncDatabase();
 
+app.use(json());
+
 app.use(router);
 
 app.use((req: Request, res: Response) => {
@@ -19,5 +21,5 @@ app.use((req: Request, res: Response) => {
 });
 
 app.listen(port, () => {
-    console.log('App listening on port ${port}');
+    console.log(`App listening on port ${port}`);
 });
