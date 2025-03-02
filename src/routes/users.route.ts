@@ -1,16 +1,17 @@
 import { Router } from "express";
 import { createUser, deleteUser, getUser, getUsers, updateUser } from "../controllers";
+import { createUserValidation, deleteUserValidation, getUserValidation, updateUserValidation } from "../validations";
 
 const router = Router();
 
 router.get("/", getUsers);
 
-router.get("/:id", getUser);
+router.get("/:id", getUserValidation, getUser);
 
-router.post("/", createUser);
+router.post("/", createUserValidation, createUser);
 
-router.put("/:id", updateUser);
+router.patch("/:id", updateUserValidation, updateUser);
 
-router.delete("/:id", deleteUser);
+router.delete("/:id", deleteUserValidation, deleteUser);
 
 export default router;
