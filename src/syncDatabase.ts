@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Activity, Organization, User } from "./models";
 
 const user = new User({
@@ -8,6 +9,7 @@ const user = new User({
     isAdmin: false
 })
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const organization = new Organization({
     name: "Club Carriego de Rosario",
     description: "Un club deportivo y recreativo",
@@ -18,7 +20,7 @@ const organization = new Organization({
     logoUrl: "https://example.com/logo.png"
 });
 
-const activity = new Activity({
+/*const activity = new Activity({
     title: "Clase de Natación",
     description: "Clase de natación para adultos de nivel intermedio. Incluye técnicas de nado libre y entrenamiento.",
     category: "Deporte",
@@ -29,8 +31,8 @@ const activity = new Activity({
     capacity: 20,
     organization: organization._id, 
     isActive: true
-});
-
+});*/
+ 
 export const syncDatabase = async () => {
     try {
         // const newOrg = await organization.save()

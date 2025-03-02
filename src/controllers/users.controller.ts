@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { User } from "../models";
 import mongoose from "mongoose";
+import firebaseApp from "../config/firebase";
 
 export const createUser = async (
   req: Request,
@@ -8,9 +9,15 @@ export const createUser = async (
   next: NextFunction
 ) => {
   const formattedDate = new Date(req.body.birthDate);
+  const { password, ...restBody } = req.body;
   try {
+    const { uid } = await firebaseApp
+      .auth()
+      .createUser({ email: req.body.email, password });
+
     const newUser = await User.create({
-      ...req.body,
+      ...restBody,
+      firebaseUid: uid,
       birthDate: formattedDate,
     });
     res.status(201).json({
@@ -23,6 +30,7 @@ export const createUser = async (
     next(error);
   }
 };
+
 export const getUsers = async (
   req: Request,
   res: Response,

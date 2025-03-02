@@ -9,6 +9,7 @@ export const getActivities = async (req: Request, res: Response, next: NextFunct
             message: "Activities retrieved successfully",
             error: false,
             data: activities
+            
         })
         return;
     } catch (error) {

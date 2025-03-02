@@ -6,6 +6,7 @@ const createUserValidationSchema = Joi.object({
     lastname: Joi.string().required(),
     birthday: Joi.date().required(),
     email: Joi.string().email().required(),
+    password: Joi.string().required(),
     isAdmin: Joi.boolean().optional().default(false),
 });
 export const createUserValidation = (req: Request, res: Response, next: NextFunction) => {
