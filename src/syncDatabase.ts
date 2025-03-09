@@ -1,16 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Activity, Organization, User } from "./models";
+//import { Activity, Organization, User } from "./models";
 
-const user = new User({
+/* const user = new User({
     name: "Jona",
     lastname: "Martino",
     birthday: new Date("1994-08-12"),
     email: "jonamartino@gmail.com",
     isAdmin: false
 })
-
+ */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const organization = new Organization({
+/* const organization = new Organization({
     name: "Club Carriego de Rosario",
     description: "Un club deportivo y recreativo",
     email: "contacto@clubcarriego.com",
@@ -19,7 +19,7 @@ const organization = new Organization({
     website: "https://clubcarriego.com",
     logoUrl: "https://example.com/logo.png"
 });
-
+ */
 /*const activity = new Activity({
     title: "Clase de Natación",
     description: "Clase de natación para adultos de nivel intermedio. Incluye técnicas de nado libre y entrenamiento.",

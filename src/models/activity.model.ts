@@ -11,6 +11,7 @@ interface Activity extends Document {
   capacity?: number; // capacidad máxima
   organization: mongoose.Schema.Types.ObjectId;
   isActive: boolean;
+  isFull?: boolean;
 }
 
 const ActivitySchema: Schema = new Schema(
@@ -29,6 +30,7 @@ const ActivitySchema: Schema = new Schema(
       required: true,
     },
     isActive: { type: Boolean, default: true },
+    isFull: { type: Boolean },
   },
   {
     timestamps: true,

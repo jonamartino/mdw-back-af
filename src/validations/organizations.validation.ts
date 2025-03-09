@@ -1,16 +1,23 @@
 import { NextFunction, Request, Response } from "express";
 import Joi from "joi";
 
+const addressSchema = Joi.object({
+    street: Joi.string().min(3).max(250).required(),
+    city: Joi.string().min(3).max(100).required(),
+    state: Joi.string().min(3).max(100).required(),
+    country: Joi.string().min(3).max(100).required()
+});
+
 const createOrganizationValidationSchema = Joi.object({
     name: Joi.string().min(3).max(250).required(),
-    description: Joi.string().required(),
+    description: Joi.string().max(500).optional(),
     email: Joi.string().email().required(),
-    phone: Joi.string().required(),
-    address: Joi.string().required(),
-    website: Joi.string().optional(),
-    logo: Joi.string().optional(),
-    isVerified: Joi.boolean().optional().default(false),
+    phone: Joi.string().optional(),
+    address: addressSchema.required(),
+    website: Joi.string().uri().optional(),
+    logo: Joi.string().uri().optional()
 });
+
 export const createOrganizationValidation = (req: Request, res: Response, next: NextFunction) => {
     const {error} = createOrganizationValidationSchema.validate(req.body)
     if (error) {
