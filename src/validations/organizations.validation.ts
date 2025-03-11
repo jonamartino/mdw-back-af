@@ -5,8 +5,18 @@ const addressSchema = Joi.object({
     street: Joi.string().min(3).max(250).required(),
     city: Joi.string().min(3).max(100).required(),
     state: Joi.string().min(3).max(100).required(),
-    country: Joi.string().min(3).max(100).required()
+    country: Joi.string().min(3).max(100).required(),
+    _id: Joi.any().forbidden()
+  });
+
+const updateAddressSchema = Joi.object({
+    street: Joi.string().min(3).max(250).optional(),
+    city: Joi.string().min(3).max(100).optional(),
+    state: Joi.string().min(3).max(100).optional(),
+    country: Joi.string().min(3).max(100).optional(),
+    _id: Joi.any().forbidden()
 });
+
 
 const createOrganizationValidationSchema = Joi.object({
     name: Joi.string().min(3).max(250).required(),
@@ -31,12 +41,12 @@ export const createOrganizationValidation = (req: Request, res: Response, next: 
 }
 const updateOrganizationValidationSchema = Joi.object({
     name: Joi.string().min(3).max(250).optional(),
-    description: Joi.string().optional(),
+    description: Joi.string().allow('').optional(),  // Allow empty string
     email: Joi.string().email().optional(),
-    phone: Joi.string().optional(),
-    address: Joi.string().optional(),
-    website: Joi.string().optional(),
-    logo: Joi.string().optional(),
+    phone: Joi.string().allow('').optional(),      // Allow empty string
+    address: updateAddressSchema.optional(),
+    website: Joi.string().allow('').optional(),    // Allow empty string
+    logo: Joi.string().uri().allow('').optional(), // Allow empty string
     isVerified: Joi.boolean().optional(),
 });
 const organizationParamValidationSchema = Joi.object({
@@ -63,6 +73,7 @@ export const updateOrganizationValidation = (
         })
         return;
     }
+    console.error(bodyError);
     next();
 }
 export const deleteOrganizationValidation = (
@@ -80,4 +91,3 @@ export const deleteOrganizationValidation = (
     }
     next();
 }
-

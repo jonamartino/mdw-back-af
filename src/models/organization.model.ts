@@ -22,7 +22,7 @@ const AddressSchema: Schema = new Schema({
     city: { type: String, required: true },
     state: { type: String, required: true },
     country: { type: String, required: true }
-});
+}, { _id: false }); // <---- IMPORTANT: Add this option);
 
 const OrganizationSchema: Schema = new Schema({
     name: { type: String, required: true },
