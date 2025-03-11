@@ -10,7 +10,7 @@ interface User extends Document {
   isAdmin: boolean;
   firebaseUid?: string;
   role: UserRole;
-  organization?: mongoose.Types.ObjectId; // Referencia a la organización si es de tipo "organization"
+  organization?: mongoose.Types.ObjectId; 
 }
 
 const UserSchema: Schema = new Schema(
@@ -22,7 +22,11 @@ const UserSchema: Schema = new Schema(
     isAdmin: { type: Boolean, default: false },
     firebaseUid: { type: String },
     role: { type: String, enum: ["user", "organization"], default: "user" },
-    organization: { type: Schema.Types.ObjectId, ref: "Organization", default: null }
+    organization: {
+      type: Schema.Types.ObjectId,
+      ref: "Organization",
+      default: null,
+    },
   },
   {
     timestamps: true,

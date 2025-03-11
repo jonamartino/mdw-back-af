@@ -1,7 +1,7 @@
-import express, { json, Request, Response } from "express"
+import express, { json, Request, Response } from "express";
 import router from "./routes/index";
 import connectDB from "./database";
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 //import { syncDatabase } from "./syncDatabase";
 import cors from "cors";
 
@@ -18,9 +18,9 @@ app.use(json());
 app.use(router);
 
 app.use((req: Request, res: Response) => {
-    res.status(404).send("Route not found");
+  res.status(404).send("Route not found");
 });
 
 app.listen(port, () => {
-    console.log(`App listening on port ${port}`);
+  console.log(`App listening on port ${port}`);
 });

@@ -1,6 +1,17 @@
 import { Router } from "express";
-import { createUser, deleteUser, getUser, getUsers, updateUser } from "../controllers";
-import { createUserValidation, deleteUserValidation, getUserValidation, updateUserValidation } from "../validations";
+import {
+  createUser,
+  deleteUser,
+  getUser,
+  getUsers,
+  updateUser,
+} from "../controllers";
+import {
+  createUserValidation,
+  deleteUserValidation,
+  getUserValidation,
+  updateUserValidation,
+} from "../validations";
 
 const router = Router();
 

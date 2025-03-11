@@ -6,9 +6,9 @@ interface Activity extends Document {
   category: string;
   date: Date;
   time?: string;
-  duration?: number; //en minutos
+  duration?: number; 
   price?: number;
-  capacity?: number; // capacidad máxima
+  capacity?: number; 
   organization: mongoose.Schema.Types.ObjectId;
   isActive: boolean;
   isFull?: boolean;

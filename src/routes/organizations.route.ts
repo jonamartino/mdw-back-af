@@ -1,6 +1,16 @@
 import { Router } from "express";
-import { createOrganization, deleteOrganization, getOrganization, getOrganizations, updateOrganization } from "../controllers";
-import { createOrganizationValidation, deleteOrganizationValidation, updateOrganizationValidation } from "../validations";
+import {
+  createOrganization,
+  deleteOrganization,
+  getOrganization,
+  getOrganizations,
+  updateOrganization,
+} from "../controllers";
+import {
+  createOrganizationValidation,
+  deleteOrganizationValidation,
+  updateOrganizationValidation,
+} from "../validations";
 import { authMiddleware } from "../middlewares/auth.middleware";
 
 const router = Router();
