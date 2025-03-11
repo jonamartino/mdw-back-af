@@ -20,12 +20,12 @@ const updateAddressSchema = Joi.object({
 
 const createOrganizationValidationSchema = Joi.object({
     name: Joi.string().min(3).max(250).required(),
-    description: Joi.string().max(500).optional(),
+    description: Joi.string().max(500).allow('').optional(),
     email: Joi.string().email().required(),
-    phone: Joi.string().optional(),
+    phone: Joi.string().allow('').optional(),
     address: addressSchema.required(),
-    website: Joi.string().uri().optional(),
-    logo: Joi.string().uri().optional()
+    website: Joi.string().uri().allow('').optional(),
+    logo: Joi.string().uri().allow('').optional()
 });
 
 export const createOrganizationValidation = (req: Request, res: Response, next: NextFunction) => {

@@ -31,7 +31,7 @@ export const updateUserValidationSchema = Joi.object({
     email: Joi.string().email().optional(),
     isAdmin: Joi.boolean().optional(),
     role: Joi.string().valid("user", "organization").optional().default("user"),
-    organization: Joi.string().hex().length(24).optional().allow(null),
+    organization: Joi.string().hex().length(24).optional().allow('').allow(null),
 });
 const userParamValidationSchema = Joi.object({
     id: Joi.string().hex().length(24).required()
