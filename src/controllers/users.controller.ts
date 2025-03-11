@@ -8,12 +8,17 @@ export const createUser = async (
   res: Response,
   next: NextFunction
 ) => {
-  const formattedDate = new Date(req.body.birthDate);
-  const { password, ...restBody } = req.body;
+  const formattedDate = new Date(req.body.birthDate || req.body.birthday);
+  const { password, firebaseUid, ...restBody } = req.body;
   try {
-    const { uid } = await firebaseApp
-      .auth()
-      .createUser({ email: req.body.email, password });
+    // If firebaseUid is provided, use it; otherwise, create a new Firebase user
+    let uid = firebaseUid;
+    if (!uid) {
+      const firebaseUser = await firebaseApp
+        .auth()
+        .createUser({ email: req.body.email, password });
+      uid = firebaseUser.uid;
+    }
 
     const newUser = await User.create({
       ...restBody,
